@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>아보가드로 수의 측정</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;padding:0;}
+
+#deck-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+#deck{width:1600px;height:900px;position:relative;flex-shrink:0;transform-origin:center center;overflow:hidden;}
+
+.slide{
+  position:absolute;inset:0;display:none;flex-direction:column;
+  padding:56px 88px 50px;
+  background:#fff;
+  font-family:'IBM Plex Sans KR','IBM Plex Sans',system-ui,sans-serif;
+  color:#1d1d1f;
+}
+.slide.active{display:flex;}
+.slide.bg-p{background:#f5f5f7;}
+
+/* Header — {typography.caption}: 14px/600, {typography.hero-display}: -0.374px tracking */
+.ch{font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0066cc;margin-bottom:6px;}
+.ttl{font-size:50px;font-weight:600;letter-spacing:-.374px;line-height:1.1;color:#1d1d1f;}
+.div-b{width:52px;height:3px;background:#0066cc;margin:14px 0 26px;border-radius:2px;}
+
+/* Bullets */
+.blist{list-style:none;display:flex;flex-direction:column;gap:22px;}
+.blist li{display:flex;align-items:flex-start;gap:16px;font-size:34px;line-height:1.5;color:#1d1d1f;}
+.blist li .bd{flex-shrink:0;width:10px;height:10px;border-radius:50%;background:#0066cc;margin-top:14px;}
+.blist li strong{font-weight:600;}
+
+/* Steps */
+.slist{list-style:none;display:flex;flex-direction:column;gap:18px;}
+.slist li{display:flex;align-items:flex-start;gap:18px;font-size:32px;line-height:1.45;color:#1d1d1f;}
+.sbadge{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:#0066cc;color:#fff;font-size:18px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{background:#f0f4fb;color:#1d1d1f;font-weight:600;text-align:left;padding:13px 20px;font-size:30px;border-bottom:2px solid #ccd5e8;}
+.tbl td{padding:13px 20px;font-size:30px;border-bottom:1px solid #e8e8ec;color:#1d1d1f;vertical-align:middle;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:nth-child(even) td{background:#fafafa;}
+.tbl-hl td{background:#deeaff!important;font-weight:600;color:#003d99!important;}
+.tbl-lit td{background:#fff3cc!important;font-weight:600;}
+
+/* Equation — {rounded.lg}=18px for card surfaces */
+.eqbox{background:#f5f5f7;border-radius:18px;padding:22px 36px;font-size:36px;text-align:center;margin:6px 0;overflow-x:auto;}
+.eqlbl{font-size:14px;font-weight:600;color:#0066cc;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px;text-align:left;}
+
+/* Info box — left border stripe + {rounded.lg}=18px on right side */
+.ibox{background:#f0f4fb;border-left:4px solid #0066cc;border-radius:0 18px 18px 0;padding:16px 22px;font-size:30px;line-height:1.5;}
+.ibox strong{font-weight:600;}
+
+/* Note — {rounded.lg}=18px */
+.notebox{background:#fff8e0;border-radius:18px;padding:14px 22px;font-size:30px;color:#5a4500;border:1px solid #ffd966;line-height:1.5;}
+.notebox strong{color:#3a2d00;font-weight:600;}
+
+/* Result chips — {rounded.lg}=18px */
+.rchips{display:flex;gap:22px;}
+.rchip{flex:1;background:#0066cc;color:#fff;border-radius:18px;padding:20px 28px;text-align:center;}
+.rchip .rlbl{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.8;margin-bottom:8px;}
+.rchip .rval{font-size:38px;font-weight:600;line-height:1.2;}
+.rchip .rsub{font-size:20px;opacity:.85;margin-top:5px;}
+
+/* Columns */
+.cols{display:flex;gap:36px;flex:1;min-height:0;}
+.col{flex:1;display:flex;flex-direction:column;}
+
+/* TOC grid — {rounded.lg}=18px for cards */
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;}
+.toc-item{display:flex;align-items:center;gap:18px;background:#f5f5f7;border-radius:18px;padding:15px 22px;border:1px solid #e4e4e8;}
+.toc-n{font-size:34px;font-weight:600;color:#0066cc;min-width:40px;}
+.toc-t{font-size:30px;font-weight:600;color:#1d1d1f;}
+
+/* Cover */
+.cv-tag{display:inline-block;font-size:20px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0066cc;background:rgba(0,102,204,.09);border-radius:9999px;padding:8px 22px;margin-bottom:26px;}
+.cv-title{font-size:70px;font-weight:600;letter-spacing:-.28px;line-height:1.06;color:#1d1d1f;margin-bottom:18px;}
+.cv-sub{font-size:36px;color:#6e6e73;line-height:1.5;}
+.cv-meta{display:flex;gap:52px;border-top:1px solid #e0e0e0;padding-top:24px;font-size:28px;color:#6e6e73;margin-top:auto;}
+.cv-meta strong{color:#1d1d1f;font-weight:600;display:block;margin-bottom:4px;}
+
+/* Variable grid — {rounded.lg}=18px */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.vitem{display:flex;align-items:baseline;gap:14px;background:#f5f5f7;border-radius:18px;padding:13px 18px;font-size:32px;}
+.vsym{color:#0066cc;min-width:80px;font-weight:600;}
+
+/* Spacer */
+.sp{flex:1;}
+
+/* Conclusion note — {rounded.lg}=18px */
+.concl-note{background:#e8f4e8;border-radius:18px;padding:16px 24px;font-size:32px;color:#1a3d1a;font-weight:600;text-align:center;border:1px solid #b8ddb8;}
+</style>
+</head>
+<body>
+<div id="deck-wrap">
+<div id="deck">
+
+<!-- ① 표지 -->
+<div class="slide active" id="s1">
+  <div class="sp"></div>
+  <div>
+    <div class="cv-tag">화학 반응의 세계 실험 발표</div>
+    <div class="cv-title">아보가드로 수의 측정</div>
+    <div class="cv-sub">스테아르산 단분자층을 이용한 $N_A$ 결정</div>
+  </div>
+  <div class="sp"></div>
+</div>
+
+<!-- ② 목차 -->
+<div class="slide bg-p" id="s2">
+  <div class="ch">목차</div>
+  <div class="ttl">실험 구성</div>
+  <div class="div-b"></div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-n">01</span><span class="toc-t">실험 목적</span></div>
+    <div class="toc-item"><span class="toc-n">02</span><span class="toc-t">실험 원리</span></div>
+    <div class="toc-item"><span class="toc-n">03</span><span class="toc-t">실험 기구</span></div>
+    <div class="toc-item"><span class="toc-n">04</span><span class="toc-t">실험 시약</span></div>
+    <div class="toc-item"><span class="toc-n">05</span><span class="toc-t">실험 방법</span></div>
+    <div class="toc-item"><span class="toc-n">06</span><span class="toc-t">실험 결과</span></div>
+    <div class="toc-item"><span class="toc-n">07</span><span class="toc-t">계산 과정</span></div>
+    <div class="toc-item"><span class="toc-n">08</span><span class="toc-t">결론 및 고찰</span></div>
+  </div>
+</div>
+
+<!-- ③ 실험 목적 -->
+<div class="slide" id="s3">
+  <div class="ch">01 — 실험 목적</div>
+  <div class="ttl">아보가드로 수의 실험적 결정</div>
+  <div class="div-b"></div>
+  <ul class="blist">
+    <li><span class="bd"></span><span>스테아르산 단분자층 형성 및 <strong>분자 배열 관찰</strong></span></li>
+    <li><span class="bd"></span><span>단분자층 넓이 ÷ 분자 단면적 → <strong>분자 수 계산</strong></span></li>
+    <li><span class="bd"></span><span>질량·몰 질량 기반 <strong>$N_A$ 실험적 결정</strong> 및 문헌값 비교</span></li>
+  </ul>
+  <div class="sp"></div>
+  <div class="ibox">
+    <strong>핵심 아이디어</strong> — 단분자층에서 분자 수 = 넓이 ÷ 단면적,&nbsp;&nbsp;$N_A$ = 분자 수 × (몰 질량 ÷ 질량)
+  </div>
+</div>
+
+<!-- ④ 실험 원리 (1) — 단분자층 구조 -->
+<div class="slide bg-p" id="s4">
+  <div class="ch">02 — 실험 원리 (1)</div>
+  <div class="ttl">스테아르산 단분자층 형성</div>
+  <div class="div-b"></div>
+  <div class="cols">
+    <div class="col" style="justify-content:center;">
+      <ul class="blist">
+        <li><span class="bd"></span><span>스테아르산: <strong>친수성 머리</strong> (−COOH) + <strong>소수성 꼬리</strong> (C<sub>17</sub>H<sub>35</sub>)</span></li>
+        <li><span class="bd"></span><span>물 표면 위 꼬리 기립 → <strong>단분자층</strong> 형성</span></li>
+        <li><span class="bd"></span><span>층 포화 → 추가 방울 불퍼짐 → <strong>완성 판별 기준</strong></span></li>
+      </ul>
+      <div class="sp"></div>
+      <div class="notebox"><strong>왜 헥세인?</strong> — 휘발성 용매로 스테아르산 적하 후 빠른 증발, 물과 불혼합</div>
+    </div>
+    <!-- SVG diagram -->
+    <div class="col" style="align-items:center;justify-content:center;flex:0 0 520px;">
+      <svg viewBox="0 0 340 320" width="420" height="390" xmlns="http://www.w3.org/2000/svg">
+        <!-- Water -->
+        <rect x="0" y="218" width="340" height="82" rx="6" fill="#dbeafe"/>
+        <text x="170" y="266" text-anchor="middle" font-size="20" fill="#1e40af" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">물 표면</text>
+        <!-- Molecules: 5 -->
+        <g>
+          <!-- Molecule tails (squiggly lines) -->
+          <polyline points="46,216 42,198 46,180 42,162 46,144 42,126 46,108" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="106,216 102,198 106,180 102,162 106,144 102,126 106,108" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="166,216 162,198 166,180 162,162 166,144 162,126 166,108" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="226,216 222,198 226,180 222,162 226,144 222,126 226,108" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="286,216 282,198 286,180 282,162 286,144 282,126 286,108" fill="none" stroke="#6b7280" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Heads (circles at water surface) -->
+          <circle cx="46" cy="218" r="14" fill="#0066cc"/>
+          <circle cx="106" cy="218" r="14" fill="#0066cc"/>
+          <circle cx="166" cy="218" r="14" fill="#0066cc"/>
+          <circle cx="226" cy="218" r="14" fill="#0066cc"/>
+          <circle cx="286" cy="218" r="14" fill="#0066cc"/>
+        </g>
+        <!-- Labels -->
+        <line x1="310" y1="110" x2="290" y2="118" stroke="#6b7280" stroke-width="1.5"/>
+        <text x="315" y="107" font-size="16" fill="#4b5563" font-family="IBM Plex Sans KR,sans-serif">소수성 꼬리</text>
+        <line x1="310" y1="230" x2="290" y2="222" stroke="#0066cc" stroke-width="1.5"/>
+        <text x="315" y="234" font-size="16" fill="#0066cc" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">친수성 머리</text>
+        <!-- Scale bar / annotation -->
+        <text x="170" y="46" text-anchor="middle" font-size="17" fill="#374151" font-family="IBM Plex Sans KR,sans-serif">← 단분자층 →</text>
+        <line x1="20" y1="56" x2="320" y2="56" stroke="#374151" stroke-width="1.5" stroke-dasharray="6,4"/>
+      </svg>
+      <div style="font-size:22px;color:#6e6e73;text-align:center;">스테아르산 단분자층 모식도</div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑤ 실험 원리 (2) — 계산 공식 -->
+<div class="slide" id="s5">
+  <div class="ch">02 — 실험 원리 (2)</div>
+  <div class="ttl">아보가드로 수 계산 원리</div>
+  <div class="div-b"></div>
+  <div class="eqbox" style="font-size:40px;">
+    <div class="eqlbl">핵심 공식</div>
+    $$N_A = \frac{A}{a_0} \cdot \frac{M}{m}$$
+  </div>
+  <div style="height:18px;"></div>
+  <div class="vgrid">
+    <div class="vitem"><span class="vsym">$A$</span><span>단분자층 넓이 &nbsp;$= \pi r^2$</span></div>
+    <div class="vitem"><span class="vsym">$a_0$</span><span>분자 단면적 &nbsp;$= 0.205\ \text{nm}^2$&nbsp; (문헌값)</span></div>
+    <div class="vitem"><span class="vsym">$M$</span><span>몰 질량 &nbsp;$= 284.48\ \text{g/mol}$</span></div>
+    <div class="vitem"><span class="vsym">$m$</span><span>사용한 스테아르산 질량</span></div>
+  </div>
+</div>
+
+<!-- ⑥ 실험 기구 -->
+<div class="slide bg-p" id="s6">
+  <div class="ch">03 — 실험 기구</div>
+  <div class="ttl">준비 기구 목록</div>
+  <div class="div-b"></div>
+  <table class="tbl">
+    <thead><tr><th>기구</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td>시계접시</td><td>물 표면 제공</td></tr>
+      <tr><td>파스퇴르 피펫</td><td>스테아르산 용액 한 방울씩 적하</td></tr>
+      <tr><td>눈금실린더</td><td>피펫 보정 — 1.00 mL당 방울 수 측정</td></tr>
+      <tr><td>비커</td><td>스테아르산 용액 제조</td></tr>
+      <tr><td>자</td><td>시계접시 지름 측정</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ⑦ 실험 시약 -->
+<div class="slide" id="s7">
+  <div class="ch">04 — 실험 시약</div>
+  <div class="ttl">사용 시약 및 역할</div>
+  <div class="div-b"></div>
+  <table class="tbl">
+    <thead><tr><th>시약</th><th>화학식</th><th>역할</th></tr></thead>
+    <tbody>
+      <tr><td>스테아르산</td><td>$\text{C}_{18}\text{H}_{36}\text{O}_2$</td><td>단분자층 형성 물질 (양친매성)</td></tr>
+      <tr><td>헥세인</td><td>$\text{C}_6\text{H}_{14}$</td><td>스테아르산 용매 — 휘발성, 물과 불혼합</td></tr>
+      <tr><td>증류수</td><td>$\text{H}_2\text{O}$</td><td>물 표면 제공</td></tr>
+    </tbody>
+  </table>
+  <div style="height:22px;"></div>
+  <div class="notebox"><strong>주의</strong> — 헥세인: 인화성·휘발성 → 환기 필수 / 시계접시 내부 손 접촉 금지 (유분 오염)</div>
+</div>
+
+<!-- ⑧ 실험 방법 (1) -->
+<div class="slide bg-p" id="s8">
+  <div class="ch">05 — 실험 방법 (1)</div>
+  <div class="ttl">준비 및 보정 단계</div>
+  <div class="div-b"></div>
+  <ol class="slist">
+    <li><span class="sbadge">1</span><span>스테아르산 헥세인 용액 제조 및 <strong>농도 기록</strong></span></li>
+    <li><span class="sbadge">2</span><span>시계접시 세척 — 흐르는 물 1분 헹굼, <strong>내부 접촉 금지</strong></span></li>
+    <li><span class="sbadge">3</span><span>파스퇴르 피펫 보정 → <strong>1.00 mL당 방울 수</strong> 측정 (헥세인 기준)</span></li>
+    <li><span class="sbadge">4</span><span>시계접시 증류수 충진 및 <strong>지름 측정</strong></span></li>
+  </ol>
+</div>
+
+<!-- ⑨ 실험 방법 (2) -->
+<div class="slide" id="s9">
+  <div class="ch">05 — 실험 방법 (2)</div>
+  <div class="ttl">단분자층 형성 및 기록</div>
+  <div class="div-b"></div>
+  <ol class="slist">
+    <li><span class="sbadge">5</span><span>스테아르산 용액 <strong>한 방울씩 적하</strong> — 방울 간 5~10초 대기</span></li>
+    <li><span class="sbadge">6</span><span>방울 불퍼짐 <strong>30초 이상 유지</strong> 확인 → 적하 방울 수 기록</span></li>
+    <li><span class="sbadge">7</span><span>사용한 용액의 <strong>부피 계산</strong> (방울 수 ÷ 보정값 × 1.00 mL)</span></li>
+  </ol>
+  <div class="sp"></div>
+  <div class="ibox"><strong>완성 판별 기준</strong> — 방울을 적하했을 때 30초 이상 퍼지지 않고 유지될 때를 단분자층 포화로 간주</div>
+</div>
+
+<!-- ⑩ 실험 결과 -->
+<div class="slide bg-p" id="s10">
+  <div class="ch">06 — 실험 결과</div>
+  <div class="ttl">측정 데이터</div>
+  <div class="div-b"></div>
+  <table class="tbl">
+    <thead><tr><th>측정 항목</th><th>측정값</th></tr></thead>
+    <tbody>
+      <tr><td>피펫 보정 — 1.00 mL당 방울 수</td><td>80, 80, 82 &nbsp;→&nbsp; 평균 <strong>80.7 방울/mL</strong></td></tr>
+      <tr><td>스테아르산 용액 농도</td><td><strong>0.6 g/L</strong></td></tr>
+      <tr><td>시계접시 지름</td><td><strong>12 cm</strong> &nbsp;→&nbsp; 반지름 $r = 6\ \text{cm}$</td></tr>
+      <tr><td>단분자층 완성 방울 수</td><td><strong>3 ~ 4 방울</strong> (3회 측정 혼재)</td></tr>
+    </tbody>
+  </table>
+  <div style="height:20px;"></div>
+  <div class="notebox"><strong>구조적 한계</strong> — 방울 수는 정수이므로 실제 완성 시점(≈ 3.5방울)의 정밀 측정 불가</div>
+</div>
+
+<!-- ⑪ 계산 (1) — 부피와 질량 -->
+<div class="slide" id="s11">
+  <div class="ch">07 — 계산 과정 (1)</div>
+  <div class="ttl">용액 부피 및 스테아르산 질량</div>
+  <div class="div-b"></div>
+  <div class="eqbox">
+    <div class="eqlbl">① 사용한 용액의 부피</div>
+    $$V = \frac{n}{80.7} \times 1.00\ \text{mL} = \begin{cases} 0.0372\ \text{mL} & (n = 3) \\ 0.0496\ \text{mL} & (n = 4) \end{cases}$$
+  </div>
+  <div style="height:12px;"></div>
+  <div class="eqbox">
+    <div class="eqlbl">② 스테아르산 질량</div>
+    $$m = V \times 0.6\ \text{g/L} = \begin{cases} 2.23 \times 10^{-5}\ \text{g} & (n = 3) \\ 2.98 \times 10^{-5}\ \text{g} & (n = 4) \end{cases}$$
+  </div>
+</div>
+
+<!-- ⑫ 계산 (2) — 넓이와 분자 수 -->
+<div class="slide bg-p" id="s12">
+  <div class="ch">07 — 계산 과정 (2)</div>
+  <div class="ttl">단분자층 넓이 및 분자 수</div>
+  <div class="div-b"></div>
+  <div class="eqbox">
+    <div class="eqlbl">③ 단분자층 넓이</div>
+    $$A = \pi \times 6^2 = 113.1\ \text{cm}^2 = 1.131 \times 10^{-2}\ \text{m}^2$$
+  </div>
+  <div style="height:12px;"></div>
+  <div class="eqbox">
+    <div class="eqlbl">④ 분자 수 (단분자층 기준)</div>
+    $$N = \frac{A}{a_0} = \frac{1.131 \times 10^{-2}\ \text{m}^2}{0.205 \times 10^{-18}\ \text{m}^2} = 5.52 \times 10^{16}$$
+  </div>
+</div>
+
+<!-- ⑬ 계산 (3) — 아보가드로 수 -->
+<div class="slide" id="s13">
+  <div class="ch">07 — 계산 과정 (3)</div>
+  <div class="ttl">아보가드로 수 도출</div>
+  <div class="div-b"></div>
+  <div class="eqbox" style="font-size:38px;">
+    <div class="eqlbl">⑤ 아보가드로 수</div>
+    $$N_A = N \times \frac{M}{m} = 5.52 \times 10^{16} \times \frac{284.48}{m}$$
+  </div>
+  <div style="height:22px;"></div>
+  <div class="rchips">
+    <div class="rchip">
+      <div class="rlbl">n = 3방울</div>
+      <div class="rval">$7.03 \times 10^{23}$</div>
+      <div class="rsub">오차율 +16.7 %</div>
+    </div>
+    <div class="rchip">
+      <div class="rlbl">n = 4방울</div>
+      <div class="rval">$5.28 \times 10^{23}$</div>
+      <div class="rsub">오차율 −12.3 %</div>
+    </div>
+    <div class="rchip" style="background:#f5f5f7;color:#1d1d1f;border:2px solid #e0e0e0;">
+      <div class="rlbl" style="color:#6e6e73;">문헌값</div>
+      <div class="rval" style="color:#1d1d1f;">$6.022 \times 10^{23}$</div>
+      <div class="rsub" style="color:#6e6e73;">mol⁻¹</div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑭ 결론 -->
+<div class="slide bg-p" id="s14">
+  <div class="ch">08 — 결론</div>
+  <div class="ttl">측정값 vs. 문헌값 비교</div>
+  <div class="div-b"></div>
+  <table class="tbl">
+    <thead><tr><th></th><th>3방울</th><th>4방울</th><th>문헌값</th></tr></thead>
+    <tbody>
+      <tr class="tbl-hl"><td>$N_A$</td><td>$7.03 \times 10^{23}$</td><td>$5.28 \times 10^{23}$</td><td class="tbl-lit">$6.022 \times 10^{23}$</td></tr>
+      <tr><td>오차율</td><td>+16.7 %</td><td>−12.3 %</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <div style="height:24px;"></div>
+  <div class="concl-note">
+    측정 범위 &nbsp;$5.28 \times 10^{23}\ \sim\ 7.03 \times 10^{23}$ &nbsp;에 문헌값 포함 → <strong>실험 유효성 확인</strong>
+  </div>
+</div>
+
+<!-- ⑮ 고찰 -->
+<div class="slide" id="s15">
+  <div class="ch">08 — 고찰</div>
+  <div class="ttl">오차 분석 및 개선 방안</div>
+  <div class="div-b"></div>
+  <ul class="blist">
+    <li><span class="bd"></span><span><strong>구조적 오차</strong> — 방울 수 정수화 → 완성 시점 (≈ 3.5방울) 정밀 측정 불가 (±1방울 / 3.5방울 ≈ 28%)</span></li>
+    <li><span class="bd"></span><span><strong>부수적 오차</strong> — 방울 크기 편차 + 단분자층 완성 육안 판단 의존</span></li>
+    <li><span class="bd"></span><span><strong>개선 방안</strong> — 마이크로피펫 도입 → 부피 연속 제어 및 정수 오차 해소 가능</span></li>
+    <li><span class="bd"></span><span><strong>평가</strong> — 단순 도구로 $N_A$ 올바른 자릿수($10^{23}$) 재현 → 정성적 유효성 확인</span></li>
+  </ul>
+</div>
+
+<!-- ⑯ 마무리 -->
+<div class="slide bg-p" id="s16">
+  <div class="sp"></div>
+  <div style="text-align:center;">
+    <div style="font-size:20px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#0066cc;margin-bottom:24px;">화학 반응의 세계 실험 발표</div>
+    <div style="font-size:68px;font-weight:600;letter-spacing:-.03em;color:#1d1d1f;line-height:1.05;margin-bottom:18px;">감사합니다</div>
+    <div style="font-size:34px;color:#6e6e73;">아보가드로 수의 측정 — 스테아르산 단분자층법</div>
+  </div>
+  <div class="sp"></div>
+  <div style="display:flex;gap:40px;border-top:1px solid #e0e0e0;padding-top:24px;font-size:28px;color:#6e6e73;justify-content:center;">
+    <span>측정 범위: $5.28 \sim 7.03 \times 10^{23}$</span>
+    <span style="color:#c0c0c0;">|</span>
+    <span>문헌값: $6.022 \times 10^{23}\ \text{mol}^{-1}$</span>
+    <span style="color:#c0c0c0;">|</span>
+    <span>실험 유효성: 확인</span>
+  </div>
+</div>
+
+</div><!-- #deck -->
+</div><!-- #deck-wrap -->
+
+<!-- Navigation -->
+<div id="nav-bar">
+  <button id="btn-prev">← 이전</button>
+  <button id="btn-next">다음 →</button>
+</div>
+<div id="slide-counter"></div>
+
+<style>
+#nav-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:999;}
+#nav-bar button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:9999px;padding:8px 22px;font-size:14px;cursor:pointer;backdrop-filter:blur(8px);font-family:'IBM Plex Sans KR',sans-serif;transition:background .15s;}
+#nav-bar button:hover{background:rgba(255,255,255,.26);}
+#slide-counter{position:fixed;bottom:22px;right:26px;font-size:13px;color:#888;z-index:999;font-family:'IBM Plex Sans',sans-serif;}
+</style>
+
+<script>
+const slides = Array.from(document.querySelectorAll('.slide'));
+let cur = 0;
+
+function show(n) {
+  slides[cur].classList.remove('active');
+  cur = ((n % slides.length) + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  document.getElementById('slide-counter').textContent = (cur + 1) + ' / ' + slides.length;
+  if (window.renderMathInElement) {
+    renderMathInElement(slides[cur], {
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]
+    });
+  }
+}
+
+document.getElementById('btn-next').onclick = () => show(cur + 1);
+document.getElementById('btn-prev').onclick = () => show(cur - 1);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp') { e.preventDefault(); show(cur - 1); }
+});
+
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if (Math.abs(dx) > 40) dx < 0 ? show(cur + 1) : show(cur - 1);
+}, {passive:true});
+
+// Resize to fit viewport
+function resize() {
+  const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 900);
+  document.getElementById('deck').style.transform = `scale(${scale})`;
+}
+window.addEventListener('resize', resize);
+resize();
+show(0);
+</script>
+</body>
+</html>
