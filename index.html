@@ -184,14 +184,46 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
   <div class="ttl">스테아르산 단분자층 형성</div>
   <div class="div-b"></div>
   <div class="cols">
-    <div class="col" style="justify-content:center;">
+    <div class="col" style="justify-content:center;gap:20px;">
       <ul class="blist">
         <li><span class="bd"></span><span>스테아르산: <strong>친수성 머리</strong> (−COOH) + <strong>소수성 꼬리</strong> (C<sub>17</sub>H<sub>35</sub>)</span></li>
         <li><span class="bd"></span><span>물 표면 위 꼬리 기립 → <strong>단분자층</strong> 형성</span></li>
         <li><span class="bd"></span><span>층 포화 → 추가 방울 불퍼짐 → <strong>완성 판별 기준</strong></span></li>
       </ul>
-      <div class="sp"></div>
-      <div class="notebox"><strong>왜 헥세인?</strong> — 휘발성 용매로 스테아르산 적하 후 빠른 증발, 물과 불혼합</div>
+      <!-- 스테아르산 골격 구조식 -->
+      <svg viewBox="0 0 760 162" width="100%" style="flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
+        <!-- 배경 -->
+        <rect x="0" y="0" width="760" height="162" rx="14" fill="#f5f5f7"/>
+        <!-- 타이틀 -->
+        <text x="380" y="20" text-anchor="middle" font-size="14" fill="#0066cc" font-family="IBM Plex Sans KR,sans-serif" font-weight="600" letter-spacing="0.04em">스테아르산 골격 구조식  C₁₈H₃₆O₂  (분자량 284.48 g/mol)</text>
+        <!-- COOH 기: C1 = (96, 84) -->
+        <!-- =O 이중결합 (상단 왼쪽) -->
+        <line x1="96" y1="84" x2="71" y2="61" stroke="#dc2626" stroke-width="2.2"/>
+        <line x1="98" y1="82" x2="73" y2="59" stroke="#dc2626" stroke-width="2.2"/>
+        <text x="63" y="54" text-anchor="middle" font-size="15" fill="#dc2626" font-family="IBM Plex Sans,sans-serif" font-weight="600">O</text>
+        <!-- -OH 단일결합 (하단 왼쪽) -->
+        <line x1="96" y1="84" x2="71" y2="107" stroke="#dc2626" stroke-width="2.2"/>
+        <text x="55" y="114" text-anchor="middle" font-size="15" fill="#dc2626" font-family="IBM Plex Sans,sans-serif" font-weight="600">HO</text>
+        <!-- 탄소 골격 지그재그: C1(96,84) → C18(674,66) -->
+        <!-- 각 단계: dx=34, dy=±18 교대 -->
+        <polyline
+          points="96,84 130,66 164,84 198,66 232,84 266,66 300,84 334,66 368,84 402,66 436,84 470,66 504,84 538,66 572,84 606,66 640,84 674,66"
+          fill="none" stroke="#374151" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- CH₃ 말단: C18(674,66) → 오른쪽 위 -->
+        <line x1="674" y1="66" x2="700" y2="48" stroke="#374151" stroke-width="2.5"/>
+        <text x="708" y="45" text-anchor="start" font-size="14" fill="#374151" font-family="IBM Plex Sans,sans-serif">CH₃</text>
+        <!-- 친수성 머리 라벨 -->
+        <line x1="46" y1="134" x2="100" y2="134" stroke="#dc2626" stroke-width="1.5"/>
+        <line x1="46" y1="130" x2="46" y2="138" stroke="#dc2626" stroke-width="1.5"/>
+        <line x1="100" y1="130" x2="100" y2="138" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="73" y="152" text-anchor="middle" font-size="13" fill="#dc2626" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">친수성 머리</text>
+        <!-- 소수성 꼬리 라벨 -->
+        <line x1="106" y1="134" x2="710" y2="134" stroke="#6b7280" stroke-width="1.5"/>
+        <line x1="106" y1="130" x2="106" y2="138" stroke="#6b7280" stroke-width="1.5"/>
+        <line x1="710" y1="130" x2="710" y2="138" stroke="#6b7280" stroke-width="1.5"/>
+        <text x="408" y="152" text-anchor="middle" font-size="13" fill="#6b7280" font-family="IBM Plex Sans KR,sans-serif">소수성 꼬리  (-C₁₇H₃₅)</text>
+      </svg>
+      <div class="notebox"><strong>헥세인?</strong> — 휘발성 용매로 스테아르산 적하 후 빠른 증발, 물과 불혼합</div>
     </div>
     <!-- SVG diagram -->
     <div class="col" style="align-items:center;justify-content:center;flex:0 0 520px;">
@@ -233,17 +265,103 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
   <div class="ch">02 — 실험 원리 (2)</div>
   <div class="ttl">아보가드로 수 계산 원리</div>
   <div class="div-b"></div>
-  <div class="eqbox" style="font-size:40px;">
-    <div class="eqlbl">핵심 공식</div>
-    $$N_A = \frac{A}{a_0} \cdot \frac{M}{m}$$
+  <div style="display:flex;gap:36px;align-items:stretch;">
+    <div style="flex:0 0 500px;">
+      <div class="eqbox" style="font-size:32px;">
+        <div class="eqlbl">핵심 공식</div>
+        $$N_A = \frac{A}{a_0} \cdot \frac{M}{m}$$
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:12px;justify-content:center;">
+      <div style="display:flex;align-items:baseline;gap:12px;font-size:28px;line-height:1.5;">
+        <span style="color:#0066cc;font-weight:600;flex-shrink:0;">①</span>
+        <span>$\dfrac{A}{a_0}$ = 분자 개수 $N$ &nbsp;<span style="color:#6b7280;font-size:24px;">— 전체 넓이 ÷ 분자 1개 넓이</span></span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:12px;font-size:28px;line-height:1.5;">
+        <span style="color:#0066cc;font-weight:600;flex-shrink:0;">②</span>
+        <span>$\dfrac{m}{M}$ = 몰 수 $n$ &nbsp;<span style="color:#6b7280;font-size:24px;">— 사용 질량 ÷ 몰 질량</span></span>
+      </div>
+    </div>
   </div>
-  <div style="height:18px;"></div>
+  <div style="height:16px;"></div>
   <div class="vgrid">
     <div class="vitem"><span class="vsym">$A$</span><span>단분자층 넓이 &nbsp;$= \pi r^2$</span></div>
     <div class="vitem"><span class="vsym">$a_0$</span><span>분자 단면적 &nbsp;$= 0.205\ \text{nm}^2$&nbsp; (문헌값)</span></div>
     <div class="vitem"><span class="vsym">$M$</span><span>몰 질량 &nbsp;$= 284.48\ \text{g/mol}$</span></div>
     <div class="vitem"><span class="vsym">$m$</span><span>사용한 스테아르산 질량</span></div>
   </div>
+  <!-- 시계접시 단분자층 모식도 -->
+  <svg viewBox="0 0 1000 216" width="100%" style="margin-top:14px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="s5ar" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+        <polygon points="0,0 8,4 0,8" fill="#6b7280"/>
+      </marker>
+      <marker id="s5ab" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+        <polygon points="0,0 8,4 0,8" fill="#1d4ed8"/>
+      </marker>
+      <marker id="s5avr" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+        <polygon points="0,0 8,4 0,8" fill="#7c3aed"/>
+      </marker>
+      <marker id="s5avl" viewBox="0 0 8 8" refX="0" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+        <polygon points="8,0 0,4 8,8" fill="#7c3aed"/>
+      </marker>
+      <pattern id="s5mp" x="0" y="0" width="12" height="13.8" patternUnits="userSpaceOnUse">
+        <circle cx="3" cy="3.5" r="3.5" fill="#f97316" opacity="0.88"/>
+        <circle cx="9" cy="10.4" r="3.5" fill="#f97316" opacity="0.88"/>
+      </pattern>
+      <clipPath id="s5wc">
+        <circle cx="193" cy="112" r="76"/>
+      </clipPath>
+    </defs>
+    <!-- ===== LEFT: 위에서 본 시계접시 ===== -->
+    <rect x="8" y="6" width="368" height="204" rx="12" fill="#f0f9ff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <text x="192" y="24" fill="#4b5563" font-size="18" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">위에서 본 시계접시</text>
+    <circle cx="193" cy="112" r="78" fill="none" stroke="#9ca3af" stroke-width="3.5"/>
+    <circle cx="193" cy="112" r="76" fill="#dbeafe"/>
+    <rect x="0" y="0" width="1000" height="216" fill="url(#s5mp)" clip-path="url(#s5wc)"/>
+    <line x1="193" y1="112" x2="263" y2="112" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#s5ab)"/>
+    <circle cx="193" cy="112" r="4" fill="#1d4ed8"/>
+    <text x="228" y="104" fill="#1d4ed8" font-size="18" font-weight="bold" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">r</text>
+    <text x="192" y="206" fill="#1d4ed8" font-size="17" font-weight="600" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">A = πr²</text>
+    <text x="310" y="44" fill="#6b7280" font-size="13" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">시계접시 테두리</text>
+    <line x1="282" y1="46" x2="258" y2="58" stroke="#9ca3af" stroke-width="1.2"/>
+    <!-- ===== CENTER arrow ===== -->
+    <line x1="390" y1="112" x2="432" y2="112" stroke="#6b7280" stroke-width="2" marker-end="url(#s5ar)"/>
+    <!-- ===== RIGHT: 옆에서 본 단면도 ===== -->
+    <rect x="445" y="6" width="547" height="204" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="718" y="24" fill="#4b5563" font-size="18" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">옆에서 본 단면도</text>
+    <text x="718" y="46" fill="#94a3b8" font-size="13" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">공기 (소수성 꼬리 노출)</text>
+    <line x1="460" y1="108" x2="984" y2="108" stroke="#3b82f6" stroke-width="2" stroke-dasharray="8,4"/>
+    <text x="443" y="122" fill="#3b82f6" font-size="12" font-family="'IBM Plex Sans KR',sans-serif">물 표면</text>
+    <rect x="445" y="108" width="547" height="62" fill="#bfdbfe" opacity="0.4"/>
+    <path d="M 458,165 Q 718,187 978,165" fill="none" stroke="#9ca3af" stroke-width="3.5"/>
+    <text x="718" y="160" fill="#1d4ed8" font-size="13" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">물 (증류수)</text>
+    <!-- 9분자: x=484,538,592,646,700,754,808,862,916 -->
+    <polyline points="484,108 489,89 479,71 484,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="484" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="538,108 543,89 533,71 538,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="538" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="592,108 597,89 587,71 592,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="592" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="646,108 651,89 641,71 646,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="646" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="700,108 705,89 695,71 700,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="700" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="754,108 759,89 749,71 754,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="754" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="808,108 813,89 803,71 808,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="808" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="862,108 867,89 857,71 862,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="862" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <polyline points="916,108 921,89 911,71 916,57" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="916" cy="116" r="8" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
+    <!-- a₀ 주석 -->
+    <line x1="631" y1="132" x2="665" y2="132" stroke="#7c3aed" stroke-width="1.5" marker-start="url(#s5avl)" marker-end="url(#s5avr)"/>
+    <text x="648" y="147" fill="#7c3aed" font-size="15" font-weight="bold" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">a₀</text>
+    <!-- 범례 -->
+    <text x="530" y="198" fill="#ef4444" font-size="13" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">● 친수성 머리 (물에 용해)</text>
+    <text x="890" y="198" fill="#9ca3af" font-size="13" text-anchor="middle" font-family="'IBM Plex Sans KR',sans-serif">── 소수성 꼬리 (공기 중 노출)</text>
+  </svg>
 </div>
 
 <!-- ⑥ 실험 기구 -->
@@ -289,25 +407,25 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
   <ol class="slist">
     <li><span class="sbadge">1</span><span>스테아르산 헥세인 용액 제조 및 <strong>농도 기록</strong></span></li>
     <li><span class="sbadge">2</span><span>시계접시 세척 — 흐르는 물 1분 헹굼, <strong>내부 접촉 금지</strong></span></li>
-    <li><span class="sbadge">3</span><span>파스퇴르 스포이트 보정 → <strong>1.00 mL당 방울 수</strong> 측정 (헥세인 기준)</span></li>
+    <li><span class="sbadge">3</span><span>스포이트 보정 → <strong>1.00 mL당 방울 수</strong> 측정 (헥세인 기준)</span></li>
     <li><span class="sbadge">4</span><span>시계접시 증류수 충진 및 <strong>지름 측정</strong></span></li>
   </ol>
   <div class="sp"></div>
   <!-- 준비 단계 시각화 -->
-  <div style="display:flex;align-items:center;background:#fff;border-radius:18px;padding:22px 28px;gap:0;">
+  <div style="display:flex;align-items:center;background:#fff;border-radius:18px;padding:28px 32px;gap:0;">
     <div style="flex:1;text-align:center;">
-      <svg viewBox="0 0 80 78" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 80 78" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
         <rect x="18" y="16" width="44" height="50" rx="5" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
         <rect x="18" y="16" width="44" height="16" rx="3" fill="#93c5fd"/>
         <rect x="26" y="38" width="28" height="5" rx="2" fill="#93c5fd" opacity="0.6"/>
         <rect x="26" y="48" width="20" height="5" rx="2" fill="#93c5fd" opacity="0.4"/>
       </svg>
-      <div style="font-size:18px;font-weight:600;color:#1e40af;margin-top:8px;">용액 제조</div>
-      <div style="font-size:13px;color:#6b7280;margin-top:3px;">0.6 g/L</div>
+      <div style="font-size:24px;font-weight:600;color:#1e40af;margin-top:10px;">용액 제조</div>
+      <div style="font-size:17px;color:#6b7280;margin-top:4px;">0.6 g/L</div>
     </div>
-    <div style="font-size:32px;color:#93c5fd;padding:0 10px;flex-shrink:0;">→</div>
+    <div style="font-size:42px;color:#93c5fd;padding:0 14px;flex-shrink:0;">→</div>
     <div style="flex:1;text-align:center;">
-      <svg viewBox="0 0 80 78" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 80 78" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="40" cy="54" rx="30" ry="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
         <ellipse cx="40" cy="42" rx="30" ry="8" fill="#e0f2fe" stroke="#3b82f6" stroke-width="3"/>
         <ellipse cx="40" cy="30" rx="30" ry="8" fill="#f0f9ff" stroke="#3b82f6" stroke-width="3"/>
@@ -315,24 +433,24 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
         <ellipse cx="42" cy="27" rx="4" ry="5" fill="#60a5fa"/>
         <ellipse cx="53" cy="29" rx="4" ry="5" fill="#60a5fa"/>
       </svg>
-      <div style="font-size:18px;font-weight:600;color:#1e40af;margin-top:8px;">시계접시 세척</div>
-      <div style="font-size:13px;color:#6b7280;margin-top:3px;">내부 접촉 금지</div>
+      <div style="font-size:24px;font-weight:600;color:#1e40af;margin-top:10px;">시계접시 세척</div>
+      <div style="font-size:17px;color:#6b7280;margin-top:4px;">내부 접촉 금지</div>
     </div>
-    <div style="font-size:32px;color:#93c5fd;padding:0 10px;flex-shrink:0;">→</div>
+    <div style="font-size:42px;color:#93c5fd;padding:0 14px;flex-shrink:0;">→</div>
     <div style="flex:1;text-align:center;">
-      <svg viewBox="0 0 80 78" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 80 78" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
         <rect x="27" y="10" width="26" height="58" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
         <rect x="27" y="44" width="26" height="24" rx="4" fill="#93c5fd"/>
         <line x1="40" y1="20" x2="53" y2="20" stroke="#3b82f6" stroke-width="1.5"/>
         <line x1="40" y1="30" x2="53" y2="30" stroke="#3b82f6" stroke-width="1.5"/>
         <line x1="40" y1="40" x2="53" y2="40" stroke="#3b82f6" stroke-width="1.5"/>
       </svg>
-      <div style="font-size:18px;font-weight:600;color:#1e40af;margin-top:8px;">스포이트 보정</div>
-      <div style="font-size:13px;color:#6b7280;margin-top:3px;">방울 수 / mL</div>
+      <div style="font-size:24px;font-weight:600;color:#1e40af;margin-top:10px;">스포이트 보정</div>
+      <div style="font-size:17px;color:#6b7280;margin-top:4px;">방울 수 / mL</div>
     </div>
-    <div style="font-size:32px;color:#93c5fd;padding:0 10px;flex-shrink:0;">→</div>
+    <div style="font-size:42px;color:#93c5fd;padding:0 14px;flex-shrink:0;">→</div>
     <div style="flex:1;text-align:center;">
-      <svg viewBox="0 0 80 78" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 80 78" width="92" height="92" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="32" width="68" height="20" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
         <line x1="18" y1="32" x2="18" y2="42" stroke="#3b82f6" stroke-width="2"/>
         <line x1="28" y1="32" x2="28" y2="38" stroke="#3b82f6" stroke-width="1.5"/>
@@ -343,8 +461,8 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
         <polygon points="12,24 20,20 20,28" fill="#0066cc"/>
         <polygon points="68,24 60,20 60,28" fill="#0066cc"/>
       </svg>
-      <div style="font-size:18px;font-weight:600;color:#1e40af;margin-top:8px;">지름 측정</div>
-      <div style="font-size:13px;color:#6b7280;margin-top:3px;">12 cm</div>
+      <div style="font-size:24px;font-weight:600;color:#1e40af;margin-top:10px;">지름 측정</div>
+      <div style="font-size:17px;color:#6b7280;margin-top:4px;">12 cm</div>
     </div>
   </div>
 </div>
@@ -419,7 +537,7 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
     </tbody>
   </table>
   <div style="height:20px;"></div>
-  <div class="notebox"><strong>구조적 한계</strong> — 방울 수는 정수이므로 실제 완성 시점(≈ 3.5방울)의 정밀 측정 불가</div>
+  <div class="notebox"><strong>구조적 한계</strong> — 방울 수는 정수이므로 실제 완성 시점(≈ 3.xx방울)의 정밀 측정 불가</div>
 </div>
 
 <!-- ⑪ 계산 (1) — 부피와 질량 -->
@@ -537,7 +655,7 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
   <div class="cols">
     <div class="col">
       <ul class="blist">
-        <li><span class="bd"></span><span><strong>구조적 오차</strong> — 방울 수 정수화 → 완성 시점 (≈ 3.5방울) 정밀 측정 불가 (±1방울 / 3.5방울 ≈ 28%)</span></li>
+        <li><span class="bd"></span><span><strong>구조적 오차</strong> — 방울 수 정수화 → 완성 시점 (≈ 3.xx방울) 정밀 측정 불가 (±1방울 / 3.5방울 ≈ 28%)</span></li>
         <li><span class="bd"></span><span><strong>부수적 오차</strong> — 방울 크기 편차 + 단분자층 완성 육안 판단 의존</span></li>
         <li><span class="bd"></span><span><strong>개선 방안</strong> — 마이크로피펫 도입 → 부피 연속 제어 및 정수 오차 해소 가능</span></li>
         <li><span class="bd"></span><span><strong>평가</strong> — 단순 도구로 $N_A$ 올바른 자릿수($10^{23}$) 재현 → 정성적 유효성 확인</span></li>
@@ -602,16 +720,9 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
 </div><!-- #deck-wrap -->
 
 <!-- Navigation -->
-<div id="nav-bar">
-  <button id="btn-prev">← 이전</button>
-  <button id="btn-next">다음 →</button>
-</div>
 <div id="slide-counter"></div>
 
 <style>
-#nav-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:999;}
-#nav-bar button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:9999px;padding:8px 22px;font-size:14px;cursor:pointer;backdrop-filter:blur(8px);font-family:'IBM Plex Sans KR',sans-serif;transition:background .15s;}
-#nav-bar button:hover{background:rgba(255,255,255,.26);}
 #slide-counter{position:fixed;bottom:22px;right:26px;font-size:13px;color:#888;z-index:999;font-family:'IBM Plex Sans',sans-serif;}
 </style>
 
@@ -631,8 +742,6 @@ function show(n) {
   }
 }
 
-document.getElementById('btn-next').onclick = () => show(cur + 1);
-document.getElementById('btn-prev').onclick = () => show(cur - 1);
 
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
