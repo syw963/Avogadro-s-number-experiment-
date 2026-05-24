@@ -472,53 +472,49 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
   <div class="ch">05 — 실험 방법 (2)</div>
   <div class="ttl">단분자층 형성 및 기록</div>
   <div class="div-b"></div>
-  <div class="cols">
-    <div class="col" style="justify-content:space-between;">
-      <ol class="slist">
-        <li><span class="sbadge">5</span><span>스테아르산 용액 <strong>한 방울씩 적하</strong> — 방울 간 5~10초 대기</span></li>
-        <li><span class="sbadge">6</span><span>방울 불퍼짐 <strong>30초 이상 유지</strong> 확인 → 적하 방울 수 기록</span></li>
-        <li><span class="sbadge">7</span><span>사용한 용액의 <strong>부피 계산</strong> (방울 수 ÷ 보정값 × 1.00 mL)</span></li>
-      </ol>
-      <div class="ibox"><strong>완성 판별 기준</strong> — 방울을 적하했을 때 30초 이상 퍼지지 않고 유지될 때를 단분자층 포화로 간주</div>
+  <ol class="slist">
+    <li><span class="sbadge">5</span><span>스테아르산 용액 <strong>한 방울씩 적하</strong> — 방울 간 5~10초 대기</span></li>
+    <li><span class="sbadge">6</span><span>방울 불퍼짐 <strong>30초 이상 유지</strong> 확인 → 적하 방울 수 기록</span></li>
+    <li><span class="sbadge">7</span><span>사용한 용액의 <strong>부피 계산</strong> (방울 수 ÷ 보정값 × 1.00 mL)</span></li>
+  </ol>
+  <div style="height:16px;"></div>
+  <!-- 퍼짐 vs 불퍼짐 비교 -->
+  <div style="display:flex;flex-direction:row;align-items:flex-start;gap:12px;">
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="font-size:20px;font-weight:600;color:#6b7280;margin-bottom:10px;">포화 전 — 방울이 퍼짐</div>
+      <svg viewBox="0 0 190 150" width="258" height="203" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="95" cy="75" r="68" fill="#dbeafe" stroke="#93c5fd" stroke-width="3"/>
+        <circle cx="95" cy="75" r="46" fill="#60a5fa" opacity="0.35"/>
+        <circle cx="95" cy="75" r="20" fill="#3b82f6" opacity="0.8"/>
+        <circle cx="95" cy="75" r="34" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
+        <circle cx="95" cy="75" r="52" fill="none" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="3,4" opacity="0.5"/>
+        <defs>
+          <marker id="m-sp1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 z" fill="#2563eb"/>
+          </marker>
+        </defs>
+        <line x1="95" y1="75" x2="125" y2="54" stroke="#2563eb" stroke-width="2" marker-end="url(#m-sp1)"/>
+        <line x1="95" y1="75" x2="62" y2="54" stroke="#2563eb" stroke-width="2" marker-end="url(#m-sp1)"/>
+        <line x1="95" y1="75" x2="95" y2="44" stroke="#2563eb" stroke-width="2" marker-end="url(#m-sp1)"/>
+      </svg>
     </div>
-    <!-- 퍼짐 vs 불퍼짐 비교 -->
-    <div class="col" style="flex:0 0 500px;align-items:center;justify-content:center;gap:16px;">
-      <div style="text-align:center;">
-        <div style="font-size:19px;font-weight:600;color:#6b7280;margin-bottom:10px;">포화 전 — 방울이 퍼짐</div>
-        <svg viewBox="0 0 190 150" width="210" height="166" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="95" cy="75" r="68" fill="#dbeafe" stroke="#93c5fd" stroke-width="3"/>
-          <circle cx="95" cy="75" r="46" fill="#60a5fa" opacity="0.35"/>
-          <circle cx="95" cy="75" r="20" fill="#3b82f6" opacity="0.8"/>
-          <circle cx="95" cy="75" r="34" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,3" opacity="0.7"/>
-          <circle cx="95" cy="75" r="52" fill="none" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="3,4" opacity="0.5"/>
-          <defs>
-            <marker id="m-sp1" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
-              <path d="M0,0 L7,3.5 L0,7 z" fill="#2563eb"/>
-            </marker>
-          </defs>
-          <line x1="95" y1="75" x2="125" y2="54" stroke="#2563eb" stroke-width="2" marker-end="url(#m-sp1)"/>
-          <line x1="95" y1="75" x2="62" y2="54" stroke="#2563eb" stroke-width="2" marker-end="url(#m-sp1)"/>
-          <line x1="95" y1="75" x2="95" y2="44" stroke="#2563eb" stroke-width="2" marker-end="url(#m-sp1)"/>
-          <text x="95" y="140" text-anchor="middle" font-size="14" fill="#2563eb" font-family="IBM Plex Sans KR,sans-serif">→ 계속 적하</text>
-        </svg>
-      </div>
-      <div style="font-size:38px;color:#d1d5db;flex-shrink:0;">→</div>
-      <div style="text-align:center;">
-        <div style="font-size:19px;font-weight:600;color:#16a34a;margin-bottom:10px;">포화 후 — 방울 유지</div>
-        <svg viewBox="0 0 190 150" width="210" height="166" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="95" cy="75" r="68" fill="#dbeafe" stroke="#93c5fd" stroke-width="3"/>
-          <circle cx="95" cy="75" r="62" fill="#3b82f6" opacity="0.28"/>
-          <circle cx="95" cy="75" r="15" fill="#1d4ed8"/>
-          <!-- checkmark -->
-          <path d="M118,44 L128,58 L148,32" fill="none" stroke="#16a34a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- no-spread crossed arrows -->
-          <line x1="95" y1="75" x2="122" y2="58" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,3" opacity="0.7"/>
-          <line x1="95" y1="75" x2="68" y2="58" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,3" opacity="0.7"/>
-          <text x="95" y="140" text-anchor="middle" font-size="14" fill="#16a34a" font-family="IBM Plex Sans KR,sans-serif">단분자층 완성!</text>
-        </svg>
-      </div>
+    <div style="font-size:38px;color:#d1d5db;flex-shrink:0;padding-top:120px;">→</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="font-size:20px;font-weight:600;color:#16a34a;margin-bottom:10px;">포화 후 — 방울 유지</div>
+      <svg viewBox="0 0 190 150" width="258" height="203" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="95" cy="75" r="68" fill="#dbeafe" stroke="#93c5fd" stroke-width="3"/>
+        <circle cx="95" cy="75" r="62" fill="#3b82f6" opacity="0.28"/>
+        <circle cx="95" cy="75" r="15" fill="#1d4ed8"/>
+        <!-- checkmark -->
+        <path d="M118,44 L128,58 L148,32" fill="none" stroke="#16a34a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- no-spread crossed arrows -->
+        <line x1="95" y1="75" x2="122" y2="58" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,3" opacity="0.7"/>
+        <line x1="95" y1="75" x2="68" y2="58" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,3" opacity="0.7"/>
+      </svg>
     </div>
   </div>
+  <div style="height:16px;"></div>
+  <div class="ibox"><strong>완성 판별 기준</strong> — 방울을 적하했을 때 30초 이상 퍼지지 않고 유지될 때를 단분자층 포화로 간주</div>
 </div>
 
 <!-- ⑩ 실험 결과 -->
@@ -557,7 +553,7 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
 </div>
 
 <!-- ⑫ 계산 (2) — 넓이와 분자 수 -->
-<div class="slide bg-p" id="s12">
+<div class="slide" id="s12">
   <div class="ch">07 — 계산 과정 (2)</div>
   <div class="ttl">단분자층 넓이 및 분자 수</div>
   <div class="div-b"></div>
@@ -652,56 +648,48 @@ html,body{width:100%;height:100%;background:#1c1c1e;overflow:hidden;margin:0;pad
   <div class="ch">08 — 고찰</div>
   <div class="ttl">오차 분석 및 개선 방안</div>
   <div class="div-b"></div>
-  <div class="cols">
-    <div class="col">
-      <ul class="blist">
-        <li><span class="bd"></span><span><strong>구조적 오차</strong> — 방울 수 정수화 → 완성 시점 (≈ 3.xx방울) 정밀 측정 불가 (±1방울 / 3.5방울 ≈ 28%)</span></li>
-        <li><span class="bd"></span><span><strong>부수적 오차</strong> — 방울 크기 편차 + 단분자층 완성 육안 판단 의존</span></li>
-        <li><span class="bd"></span><span><strong>개선 방안</strong> — 마이크로피펫 도입 → 부피 연속 제어 및 정수 오차 해소 가능</span></li>
-        <li><span class="bd"></span><span><strong>평가</strong> — 단순 도구로 $N_A$ 올바른 자릿수($10^{23}$) 재현 → 정성적 유효성 확인</span></li>
-      </ul>
-    </div>
-    <!-- 방울 수별 NA 막대 차트 -->
-    <div class="col" style="flex:0 0 380px;align-items:center;justify-content:center;">
-      <svg viewBox="0 0 300 460" width="290" height="450" xmlns="http://www.w3.org/2000/svg">
-        <text x="150" y="26" text-anchor="middle" font-size="17" fill="#374151" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">방울 수별 Nₐ 값 비교</text>
-        <!-- Y-axis -->
-        <line x1="52" y1="38" x2="52" y2="398" stroke="#e5e7eb" stroke-width="2"/>
-        <!-- Reference line at 6.022 (y=238 when scale: 4→8, 400px height, y=438-(val-4)*100) -->
-        <!-- val=6.022 → y=438-202=236 -->
-        <line x1="52" y1="236" x2="280" y2="236" stroke="#0066cc" stroke-width="2.5" stroke-dasharray="8,5"/>
-        <text x="56" y="230" font-size="13" fill="#0066cc" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">문헌값 6.022</text>
-        <!-- 3방울 bar: val=7.03, y=438-303=135 → top=135, bottom=236, h=101 -->
-        <rect x="70" y="135" width="80" height="101" rx="8" fill="#fca5a5" stroke="#ef4444" stroke-width="2"/>
-        <text x="110" y="124" text-anchor="middle" font-size="15" fill="#ef4444" font-family="IBM Plex Sans,sans-serif" font-weight="600">7.03</text>
-        <text x="110" y="108" text-anchor="middle" font-size="13" fill="#ef4444" font-family="IBM Plex Sans KR,sans-serif">+16.7%</text>
-        <text x="110" y="256" text-anchor="middle" font-size="14" fill="#6b7280" font-family="IBM Plex Sans KR,sans-serif">3방울</text>
-        <!-- Upward arrow -->
-        <line x1="110" y1="132" x2="110" y2="116" stroke="#ef4444" stroke-width="2.5"/>
-        <polygon points="110,112 105,122 115,122" fill="#ef4444"/>
-        <!-- 4방울 bar: val=5.28, y=438-128=310 → top=236, bottom=310, h=74 -->
-        <rect x="180" y="236" width="80" height="74" rx="8" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
-        <text x="220" y="328" text-anchor="middle" font-size="15" fill="#f97316" font-family="IBM Plex Sans,sans-serif" font-weight="600">5.28</text>
-        <text x="220" y="344" text-anchor="middle" font-size="13" fill="#f97316" font-family="IBM Plex Sans KR,sans-serif">−12.3%</text>
-        <text x="220" y="258" text-anchor="middle" font-size="14" fill="#6b7280" font-family="IBM Plex Sans KR,sans-serif">4방울</text>
-        <!-- Downward arrow -->
-        <line x1="220" y1="314" x2="220" y2="330" stroke="#f97316" stroke-width="2.5"/>
-        <polygon points="220,334 215,324 225,324" fill="#f97316"/>
-        <!-- Y-axis tick labels -->
-        <text x="46" y="140" text-anchor="end" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">7.5</text>
-        <text x="46" y="240" text-anchor="end" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">6.0</text>
-        <text x="46" y="340" text-anchor="end" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">4.5</text>
-        <!-- Horizontal grid lines -->
-        <line x1="52" y1="138" x2="280" y2="138" stroke="#f3f4f6" stroke-width="1.5"/>
-        <line x1="52" y1="338" x2="280" y2="338" stroke="#f3f4f6" stroke-width="1.5"/>
-        <!-- Axis unit -->
-        <text x="166" y="420" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">× 10²³ mol⁻¹</text>
-        <!-- Ideal target dot -->
-        <circle cx="165" cy="236" r="6" fill="#0066cc"/>
-        <text x="165" y="226" text-anchor="middle" font-size="12" fill="#0066cc" font-family="IBM Plex Sans KR,sans-serif">이상: 3.5방울</text>
-      </svg>
-    </div>
-  </div>
+  <ul class="blist">
+    <li><span class="bd"></span><span><strong>구조적 오차</strong> — 방울 수 정수화 → 완성 시점 (≈ 3.xx방울) 정밀 측정 불가 (±1방울 / 3.5방울 ≈ 28%)</span></li>
+    <li><span class="bd"></span><span><strong>부수적 오차</strong> — 방울 크기 편차 + 단분자층 완성 육안 판단 의존</span></li>
+    <li><span class="bd"></span><span><strong>개선 방안</strong> — 마이크로피펫 도입 → 부피 연속 제어 및 정수 오차 해소 가능</span></li>
+    <li><span class="bd"></span><span><strong>평가</strong> — 단순 도구로 $N_A$ 올바른 자릿수($10^{23}$) 재현 → 정성적 유효성 확인</span></li>
+  </ul>
+  <!-- 방울 수별 NA 가로형 막대 차트 -->
+  <!-- 스케일 4~8: x(v)=80+(v-4)*200 → v=4:80, v=5:280, v=6:480, v=7:680, v=8:880 -->
+  <!-- 3방울(7.03): w=606(80→686), 4방울(5.28): w=256(80→336), 문헌값(6.022): x=484 -->
+  <svg viewBox="0 0 900 170" width="100%" xmlns="http://www.w3.org/2000/svg" style="margin-top:20px;">
+    <!-- Grid verticals at 4,5,6,7,8 -->
+    <line x1="80"  y1="24" x2="80"  y2="138" stroke="#e5e7eb" stroke-width="1.5"/>
+    <line x1="280" y1="24" x2="280" y2="138" stroke="#f3f4f6" stroke-width="1"/>
+    <line x1="480" y1="24" x2="480" y2="138" stroke="#f3f4f6" stroke-width="1"/>
+    <line x1="680" y1="24" x2="680" y2="138" stroke="#f3f4f6" stroke-width="1"/>
+    <line x1="880" y1="24" x2="880" y2="138" stroke="#f3f4f6" stroke-width="1"/>
+    <!-- X axis -->
+    <line x1="80" y1="138" x2="880" y2="138" stroke="#d1d5db" stroke-width="2"/>
+    <!-- X tick labels -->
+    <text x="80"  y="153" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">4</text>
+    <text x="280" y="153" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">5</text>
+    <text x="480" y="153" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">6</text>
+    <text x="680" y="153" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">7</text>
+    <text x="880" y="153" text-anchor="middle" font-size="13" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">8</text>
+    <text x="480" y="167" text-anchor="middle" font-size="12" fill="#9ca3af" font-family="IBM Plex Sans,sans-serif">× 10²³ mol⁻¹</text>
+    <!-- 문헌값 reference line at x=484 -->
+    <line x1="484" y1="20" x2="484" y2="138" stroke="#0066cc" stroke-width="2.5" stroke-dasharray="8,5"/>
+    <text x="484" y="17" text-anchor="middle" font-size="13" fill="#0066cc" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">문헌값 6.022</text>
+    <!-- 3방울 bar: w=606, y=28, h=42 -->
+    <rect x="80" y="28" width="606" height="42" rx="6" fill="#fca5a5" stroke="#ef4444" stroke-width="2"/>
+    <text x="72" y="55" text-anchor="end" font-size="15" fill="#374151" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">3방울</text>
+    <text x="270" y="47" text-anchor="middle" font-size="15" fill="#b91c1c" font-family="IBM Plex Sans,sans-serif" font-weight="600">7.03</text>
+    <text x="270" y="63" text-anchor="middle" font-size="12" fill="#b91c1c" font-family="IBM Plex Sans KR,sans-serif">+16.7%</text>
+    <!-- 이상 marker between bars -->
+    <circle cx="484" cy="82" r="5" fill="#0066cc"/>
+    <text x="492" y="86" font-size="12" fill="#0066cc" font-family="IBM Plex Sans KR,sans-serif">이상: 3.5방울</text>
+    <!-- 4방울 bar: w=256, y=88, h=42 -->
+    <rect x="80" y="88" width="256" height="42" rx="6" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
+    <text x="72" y="115" text-anchor="end" font-size="15" fill="#374151" font-family="IBM Plex Sans KR,sans-serif" font-weight="600">4방울</text>
+    <text x="208" y="107" text-anchor="middle" font-size="15" fill="#c2410c" font-family="IBM Plex Sans,sans-serif" font-weight="600">5.28</text>
+    <text x="208" y="123" text-anchor="middle" font-size="12" fill="#c2410c" font-family="IBM Plex Sans KR,sans-serif">−12.3%</text>
+  </svg>
 </div>
 
 <!-- ⑯ 마무리 -->
